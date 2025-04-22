@@ -1,7 +1,8 @@
-Auteurs :
-Albin Martin
+Auteurs :  
+Albin Martin  
 Julien Salvat
 
+# Intelligence Artificielle - Réseaux de Neurones
 
 ## Etude "théorique" de cas simples
 
