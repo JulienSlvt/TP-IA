@@ -43,17 +43,14 @@ Julien Salvat
 
 ### Influence de σ : 
 
-
-- Si σ augmente, les neurones proches du neurone gagnant j∗ vont plus apprendre l'entrée courante.  
-Car comme on le voit dans l'équation de mise à jour, les poids seront plus modifiés pour l'entrée, car l'influence des voisins est plus forte.
+- Si σ augmente, l'influence du neurone gagnant j* s'étend à un voisinage plus large. Par conséquent, les poids des neurones proches de j* seront davantage modifiés en direction de l'entrée courante, comme le montre l'équation de mise à jour, le terme exponentiel augmente pour ces voisins, ce qui amplifie la variation des poids.
 $$\Delta w_{ji} = \eta e^{-\frac{||j - j^*||_c^2}{2\sigma^2}} (x_i - w_{ji})$$  
 
 
-- Si σ est plus grand à convergence, l’auto-organisation obtenue sera donc plus “resserrée” car au neuronne gagnant j∗, les neurones voisins vont plus apprendre de l’entrée courante.
+-  Si σ est plus grand à convergence, σ influence une zone plus large autour du neurone gagnant, donc plus de neurones apprennent l'entrée courante. Un grand σ au début favorise une organisation globale, alors qu'un grand σ à convergence donne une auto-organisation plus lâche.
 
-- Pour quantifier l'influence de sigma, on peut utiliser la mesure de la moyenne des distances entre les vecteurs de poids des neurones voisins.  
-Cette formule représente la moyenne des distances moyennes entre les voisins de chaque neurone.  
-Cette fonction fait la somme des neurones dans C, et fais la moyenne du poid entre le neurone parcourut et ses voisins puis additionne les résultats.
+- Pour quantifier l'influence de σ, on peut utiliser la mesure de la moyenne des distances entre les vecteurs de poids des neurones voisins.  
+Cette formule représente la moyenne des distances moyennes entre les voisins de chaque neurone. Pour chaque neuronne de C, on calcule la moyenne du poids entre le neurone parcouru et ses voisins puis additionne les résultats et en fait une moyenne. 
 
     -   M(σ): Prend σ comme entrée et renvoie une valeur qui représente le "resserrement" des poids des neurones voisins. 
     -   C: L'ensemble des neurones.
@@ -62,4 +59,19 @@ Cette fonction fait la somme des neurones dans C, et fais la moyenne du poid ent
 $$M(\sigma) = \frac{1}{|\mathcal{C}|} \sum_{j \in \mathcal{C}} \frac{1}{|\mathcal{N}(j)|} \sum_{k \in \mathcal{N}(j)} ||W_j - W_k||$$
 
 
-En conséquence, le poids des connexions entre les neurones sera plus important, c'est-à-dire que les neurones voisins auront une plus grande influence sur la mise à jour des poids.
+Pour conclure, σ contrôle l'étendue de ce voisinage. Une grande valeur de σ signifie qu'un grand nombre de neurones autour du gagnant seront mis à jour, tandis qu'une petite valeur signifie que seuls les neurones très proches seront affectés. De plus, si σ est grand, les neuronnes proches du gagnant vont peu apprendre, alors que si σ est petit, seuls les neurones très proches du gagnant seront mis à jour de manière significative.
+
+### Influence de la distribution d’entrée
+#### X1 et X2 présentés autant de fois :
+Si X1 et X2 sont présentés autant de fois et avec un η faible et suffisamment de présentations, le neurone va autant apprendre les deux entrées et donc pour minimiser l'erreur, les poids des neurones convergeront vers la moyenne.
+$$W = \frac{X_1 + X_2}{2}$$
+
+#### X1 est présenté n fois plus que X2
+Il se passe la même chose que précédemment pour les p premières itérations, donc le poid est identique à la moyenne des deux entrées.
+Puis, à partir de la n+1 itération, le neurone va apprendre X1 n fois et donc le poids va converger vers X1.
+$$W = \frac{X_1 + X_2}{2}$$
+$$W = \frac{n \cdot X_1 + X_2}{n + 1}$$
+
+#### Entrées provenant d'une base de données quelconque
+Si les entrées proviennent d'une base de données quelconque, la moyenne des entrées va converger vers la moyenne de la base de données.
+$$W = \frac{X_1 + X_2 + ... + X_n}{n}$$
