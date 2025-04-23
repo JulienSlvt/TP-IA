@@ -51,9 +51,15 @@ $$\Delta w_{ji} = \eta e^{-\frac{||j - j^*||_c^2}{2\sigma^2}} (x_i - w_{ji})$$
 
 - Si σ est plus grand à convergence, l’auto-organisation obtenue sera donc plus “resserrée” car au neuronne gagnant j∗, les neurones voisins vont plus apprendre de l’entrée courante.
 
-- Pour quantifier l'influence de sigma, on peut utiliser la mesure de la moyenne des distances entre les vecteurs de poids des neurones voisins. 
-$$M(\sigma) = \frac{1}{|\mathcal{C}|} \sum_{j \in \mathcal{C}} \frac{1}{|\mathcal{N}(j)|} \sum_{k \in \mathcal{N}(j)} ||W_j - W_k||$$
+- Pour quantifier l'influence de sigma, on peut utiliser la mesure de la moyenne des distances entre les vecteurs de poids des neurones voisins.  
+Cette formule représente la moyenne des distances moyennes entre les voisins de chaque neurone.  
+Cette fonction fait la somme des neurones dans C, et fais la moyenne du poid entre le neurone parcourut et ses voisins puis additionne les résultats.
 
+    -   M(σ): Prend σ comme entrée et renvoie une valeur qui représente le "resserrement" des poids des neurones voisins. 
+    -   C: L'ensemble des neurones.
+    -   N(j): L'ensemble des neurones voisins du neurone j.
+
+$$M(\sigma) = \frac{1}{|\mathcal{C}|} \sum_{j \in \mathcal{C}} \frac{1}{|\mathcal{N}(j)|} \sum_{k \in \mathcal{N}(j)} ||W_j - W_k||$$
 
 
 En conséquence, le poids des connexions entre les neurones sera plus important, c'est-à-dire que les neurones voisins auront une plus grande influence sur la mise à jour des poids.
