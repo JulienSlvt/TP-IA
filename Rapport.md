@@ -75,3 +75,6 @@ $$W = \frac{n \cdot X_1 + X_2}{n + 1}$$
 #### Entrées provenant d'une base de données quelconque
 Si les entrées proviennent d'une base de données quelconque, la moyenne des entrées va converger vers la moyenne de la base de données.
 $$W = \frac{X_1 + X_2 + ... + X_n}{n}$$
+
+#### Carte à plusieurs neurones
+Si la carte à plusieurs neurones, ces derniers vont apprendre les entrées de la base de données et donc vont se rapprocher de ces dernières. Et comme un neurone apprend fortement les entrées qui sont les plus similaires à son poids, il se spécialise dans une certaine région ou un certain motif des entrées.
