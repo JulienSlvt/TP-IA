@@ -84,13 +84,72 @@ Au cours de l'entrainement, les neuronnes vont se répartir de manière à minim
 
 La quantification vectorielle permet de mesurer ce phénomène en quantifiant la similarité entre les vecteurs d'entrée et les vecteurs de poids des neurones. Les neurones dont les poids sont les plus proches des données d'entrée seront activés, ce qui permet de regrouper les données similaires en clusters. La distribution des neurones sur la carte reflète donc la distribution des données dans l'espace d'entrée.
 
+# Etude pratique
 ## Analyse de l’algorithme
-### Hypothèses
-#### Influence de η :
-Si η est très petit (proche de 0), alors l'apprentissage sera lent et nécessitera un grand nombre d'itérations pour converger vers. 
+### Influence de η :
 
-Si η est grand (plus que 1), l'apprentissage sera rapide initialement, mais à la fin oscillera autour des valeurs optimales, ce qui au long terme diminue la qualité du résultat.
+#### Hypothèse 1
+
+Si η est très petit (proche de 0), alors l'apprentissage sera lent et nécessitera un grand nombre d'itérations pour converger.
+
+#### Hypothèse 2
+
+Si η est grand (plus que 1), l'apprentissage sera rapide initialement, mais à la fin oscillera autour des valeurs optimales, ce qui à long terme diminue la qualité du résultat.
+
+#### Hypothèse 3
 
 Une valeur de η intermédiaire (entre 0.2 et 0.8) devrait offrir un bon compromis entre vitesse de convergence et stabilité.
 
-#### Influence de σ :
+### Influence de σ :
+
+#### Hypothèse 1
+
+Si σ est très petit au début de l'entraînement, seuls les neurones très proches du neurone gagnant seront significativement mis à jour. Il pourra donc arriver que certains neurones se spécialisent trop rapidement et n'explorent donc pas l'entièreté de l'espace.
+
+#### Hypothèse 2
+
+Si σ est très grand au début de l'entraînement, l'entraînement impactera un grand nombre de neurones pour chaque entrée, ce qui augmentera le temps d'apprentissage, mais favorisera la répartition des neurones sur la carte.
+
+#### Hypothèse 3
+
+Pour obtenir les meilleurs résultats, σ doit au début avoir une grande valeur, puis diminuer pendant l'entraînement. Cela permet d'abord une organisation à grande échelle, puis un réglage plus fin des poids des neurones, ce qui rendra les résultats plus précis à la fin de l'entraînement.
+
+### Influence de N :
+
+#### Hypothèse 1
+
+Si N est trop faible, les neurones peuvent ne pas avoir eu suffisamment d'entraînement, et donc le résultat peut ne pas ressembler au jeu d'entrées.
+
+#### Hypothèse 2
+
+Si n est trop grand, le temps de calcul peut être excessif et les neurones peuvent trop se spécialiser et ne plus être capables d'apprendre à partir de nouvelles entrées.
+
+#### Hypothèse 3
+
+Le meilleur résultat est donc obtenu en prenant un N ni trop grand, ni trop petit.
+
+### Taille et forme de la carte :
+
+#### Hypothèse 1
+
+Si la carte est trop petite, alors il peut ne pas y avoir assez de neurones pour couvrir l'entrée, ce qui donnerait une grande perte d'information.
+
+#### Hypothèse 2
+
+Si la carte est trop grande, alors le temps de calcul risque d'être trop grand.
+
+#### Hypothèse 3
+
+La taille de la carte doit être optimale pour pouvoir représenter au mieux le jeu d'entrées.
+
+### Influence du jeu de données :
+
+#### Hypothèse 1
+
+Si la carte est une ligne, alors cette ligne va être courbée pour essayer de recouvrir le plus d'espace ou se rapprocher de la zone la plus dense du jeu de données.
+
+#### Hypothèse 2
+
+Si la carte est un rectangle ou un carré, cette dernière essayera de recouvrir l'ensemble de la carte, mais la plupart des points seront dans la zone la plus dense.
+
+### Bras robotique
