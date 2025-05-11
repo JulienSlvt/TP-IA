@@ -144,13 +144,15 @@ La taille de la carte doit être optimale pour pouvoir représenter au mieux le 
 
 ### Influence du jeu de données :
 
-#### Hypothèse 1
+#### Hypothèse 1  
+Avec une distribution « Plus sur bords », la SOM placera davantage de neurones en périphérie : on s’attend à une couverture plus dense des zones bordures et une meilleure quantification en bordure, au prix d’une sous-représentation du centre.
 
-Si la carte est une ligne, alors cette ligne va être courbée pour essayer de recouvrir le plus d'espace ou se rapprocher de la zone la plus dense du jeu de données.
+#### Hypothèse 2  
+À l’inverse, une distribution « Plus au centre » concentre la majorité des neurones au centre du plan d’entrée : les bords seront peu ou pas couverts, ce qui génère une erreur locale élevée en périphérie.
 
-#### Hypothèse 2
+#### Hypothèse 3  
+Pour une distribution en « Colonnes » (trois bandes de densité variable), la SOM alignera les neurones sur les bandes les plus peuplées. Les colonnes peu denses seront alors sous-représentées, entraînant une quantification imprécise et une erreur locale élevée dans ces zones peu alimentées.
 
-Si la carte est un rectangle ou un carré, cette dernière essayera de recouvrir l'ensemble de la carte, mais la plupart des points seront dans la zone la plus dense.
 
 ### Bras robotique
 
