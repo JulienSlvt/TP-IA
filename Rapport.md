@@ -90,44 +90,85 @@ La quantification vectorielle permet de mesurer ce phénomène en quantifiant la
 
 #### Hypothèse 1
 
-Si η est très petit (proche de 0), alors l'apprentissage sera lent et nécessitera un grand nombre d'itérations pour converger.
+Si η est très petit (proche de 0), alors l'apprentissage sera lent et nécessitera un grand nombre d'itérations pour converger.  
 
+- $\sigma = 0.75$
+- $N = 20\,000$
+- $\eta = 0.005$
+
+![alt text](image.png)
 #### Hypothèse 2
 
 Si η est grand (plus que 1), l'apprentissage sera rapide initialement, mais à la fin oscillera autour des valeurs optimales, ce qui à long terme diminue la qualité du résultat.
-
+- $\sigma = 0.75$
+- $N = 20\,000$
+- $\eta = 1$  
+![alt text](image-2.png)
 #### Hypothèse 3
 
 Une valeur de η intermédiaire (entre 0.2 et 0.8) devrait offrir un bon compromis entre vitesse de convergence et stabilité.
 
+- $\sigma = 0.75$
+- $N = 20\,000$
+- $\eta = 0.5$  
+![alt text](image-1.png)
 ### Influence de σ :
 
 #### Hypothèse 1
 
 Si σ est très petit au début de l'entraînement, seuls les neurones très proches du neurone gagnant seront significativement mis à jour. Il pourra donc arriver que certains neurones se spécialisent trop rapidement et n'explorent donc pas l'entièreté de l'espace.
-
+- $\eta = 0.5$  
+- $N = 20\,000$
+- $\sigma = 0.25$
+![alt text](image-3.png)
+Erreur de quantification moyenne = 0.0084  
+M(σ=0.25) = 1.0072
 #### Hypothèse 2
 
-Si σ est très grand au début de l'entraînement, l'entraînement impactera un grand nombre de neurones pour chaque entrée, ce qui augmentera le temps d'apprentissage, mais favorisera la répartition des neurones sur la carte.
-
+Si σ est très grand au début de l'entraînement, l'entraînement impactera un grand nombre de neurones pour chaque entrée, ce qui augmentera le temps d'apprentissage, mais favorisera la répartition des neurones sur la carte. Mais si σ est trop grand, les neurones ne convergeront pas vers les entrées.
+- $\eta = 0.5$  
+- $N = 20\,000$  
+- $\sigma = 3$
+![alt text](image-4.png)
+Erreur de quantification moyenne = 0.1578  
+M(σ=3) = 0.0969
 #### Hypothèse 3
 
-Pour obtenir les meilleurs résultats, σ doit au début avoir une grande valeur, puis diminuer pendant l'entraînement. Cela permet d'abord une organisation à grande échelle, puis un réglage plus fin des poids des neurones, ce qui rendra les résultats plus précis à la fin de l'entraînement.
-
+Pour obtenir les meilleurs résultats, σ doit avoir une valeur intermédiaire, ou au début avoir une grande valeur, puis diminuer pendant l'entraînement. Cela permet d'abord une organisation à grande échelle, puis un réglage plus fin des poids des neurones, ce qui rendra les résultats plus précis à la fin de l'entraînement.
+- $\eta = 0.5$  
+- $N = 20\,000$  
+- $\sigma = 0.75$ (Valeur intermédiaire)
+![alt text](image-5.png)
+Erreur de quantification moyenne = 0.0105  
+M(σ=0.75) = 0.1828
 ### Influence de N :
 
 #### Hypothèse 1
 
 Si N est trop faible, les neurones peuvent ne pas avoir eu suffisamment d'entraînement, et donc le résultat peut ne pas ressembler au jeu d'entrées.
+- $\eta = 0.5$  
+- $\sigma = 0.75$  
+- $N = 100$
+![alt text](image-6.png)
+Erreur de quantification moyenne = 0.06676759847880981  Temps=0.06s
 
 #### Hypothèse 2
 
 Si n est trop grand, le temps de calcul peut être excessif et les neurones peuvent trop se spécialiser et ne plus être capables d'apprendre à partir de nouvelles entrées.
+- $\eta = 0.5$  
+- $\sigma = 0.75$  
+- $N = 30\,000$
+![alt text](image-8.png)
+Erreur de quantification moyenne = 0.012295986026089003  Temps=18.58s
 
 #### Hypothèse 3
 
 Le meilleur résultat est donc obtenu en prenant un N ni trop grand, ni trop petit.
-
+- $\eta = 0.5$  
+- $\sigma = 0.75$  
+- $N = 5\,000$
+![alt text](image-7.png)
+Erreur de quantification moyenne = 0.011297272645850752  Temps=3.13s
 ### Taille et forme de la carte :
 
 #### Hypothèse 1
@@ -136,21 +177,52 @@ Si la carte est trop petite, alors il peut ne pas y avoir assez de neurones pour
 
 #### Hypothèse 2
 
-Si la carte est trop grande, alors le temps de calcul risque d'être trop grand.
-
+Si la carte est trop grande, alors le temps de calcul risque d'être trop grand. Et les points de la carte seront trop rapprochés les uns des autres, ce qui peut entraîner une perte d'information. De plus, si la carte est trop grande, les neurones peuvent se spécialiser trop rapidement et ne pas explorer l'entièreté de l'espace.
+- $\eta = 0.5$  
+- $\sigma = 0.75$  
+- $N = 20\,000$  
+- $gridsize = (20,\ 20)$ — *Carré*
+![alt text](image-12.png)
 #### Hypothèse 3
 
 La taille de la carte doit être optimale pour pouvoir représenter au mieux le jeu d'entrées.
-
-### Influence du jeu de données :
-
-#### Hypothèse 1
+- $\eta = 0.5$  
+- $\sigma = 0.75$  
+- $N = 20\,000$  
+- $gridsize = (10,\ 10) — *Carré*$
+![alt text](image-10.png)
+Erreur de quantification moyenne = 0.010354177742160645
+#### Hypothèse 4
 
 Si la carte est une ligne, alors cette ligne va être courbée pour essayer de recouvrir le plus d'espace ou se rapprocher de la zone la plus dense du jeu de données.
 
-#### Hypothèse 2
+- $\eta = 0.5$  
+- $\sigma = 0.75$  
+- $N = 20\,000$  
+- $gridsize = (1,\ 10)$ — *Ligne horizontale*
 
-Si la carte est un rectangle ou un carré, cette dernière essayera de recouvrir l'ensemble de la carte, mais la plupart des neuronnes seront dans la zone la plus dense.
+![alt text](image-9.png)
+Erreur de quantification moyenne = 0.10962186699758192
+
+#### Hypothèse 5
+
+Si la carte est un carré, cette dernière essayera de recouvrir l'ensemble de la carte, mais la plupart des neuronnes seront dans la zone la plus dense.
+- $\eta = 0.5$  
+- $\sigma = 0.75$  
+- $N = 20\,000$  
+- $gridsize = (10,\ 10) — *Carré*$
+![alt text](image-10.png)
+Erreur de quantification moyenne = 0.010354177742160645
+
+#### Hypothèse 6
+
+Si la carte est un rectangle, cette dernière essayera de recouvrir l'ensemble de la carte, mais la plupart des neuronnes seront dans la zone la plus dense. Ou bien la carte va se courber pour essayer de recouvrir le plus d'espace ou se rapprocher de la zone la plus dense du jeu de données.
+- $\eta = 0.5$  
+- $\sigma = 0.75$  
+- $N = 20\,000$  
+- $gridsize = (15,\ 5)$ — *Rectangle 15×5*
+![alt text](image-11.png)
+Erreur de quantification moyenne = 0.01733269050710892
 
 ### Bras robotique
 
