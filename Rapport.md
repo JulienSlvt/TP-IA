@@ -97,13 +97,18 @@ Si η est très petit (proche de 0), alors l'apprentissage sera lent et nécessi
 - $\eta = 0.005$
 
 ![alt text](image.png)
+Erreur de quantification moyenne = 0.022052735116966333
+
 #### Hypothèse 2
 
 Si η est grand (plus que 1), l'apprentissage sera rapide initialement, mais à la fin oscillera autour des valeurs optimales, ce qui à long terme diminue la qualité du résultat.
 - $\sigma = 0.75$
 - $N = 20\,000$
 - $\eta = 1$  
+
 ![alt text](image-2.png)
+Erreur de quantification moyenne = 0.014694036902384567
+
 #### Hypothèse 3
 
 Une valeur de η intermédiaire (entre 0.2 et 0.8) devrait offrir un bon compromis entre vitesse de convergence et stabilité.
@@ -111,7 +116,10 @@ Une valeur de η intermédiaire (entre 0.2 et 0.8) devrait offrir un bon comprom
 - $\sigma = 0.75$
 - $N = 20\,000$
 - $\eta = 0.5$  
+
 ![alt text](image-1.png)
+Erreur de quantification moyenne = 0.011177136711844912
+
 ### Influence de σ :
 
 #### Hypothèse 1
@@ -120,6 +128,7 @@ Si σ est très petit au début de l'entraînement, seuls les neurones très pro
 - $\eta = 0.5$  
 - $N = 20\,000$
 - $\sigma = 0.25$
+
 ![alt text](image-3.png)
 Erreur de quantification moyenne = 0.0084  
 M(σ=0.25) = 1.0072
@@ -129,6 +138,7 @@ Si σ est très grand au début de l'entraînement, l'entraînement impactera un
 - $\eta = 0.5$  
 - $N = 20\,000$  
 - $\sigma = 3$
+
 ![alt text](image-4.png)
 Erreur de quantification moyenne = 0.1578  
 M(σ=3) = 0.0969
@@ -138,6 +148,7 @@ Pour obtenir les meilleurs résultats, σ doit avoir une valeur intermédiaire, 
 - $\eta = 0.5$  
 - $N = 20\,000$  
 - $\sigma = 0.75$ (Valeur intermédiaire)
+
 ![alt text](image-5.png)
 Erreur de quantification moyenne = 0.0105  
 M(σ=0.75) = 0.1828
@@ -149,6 +160,7 @@ Si N est trop faible, les neurones peuvent ne pas avoir eu suffisamment d'entra�
 - $\eta = 0.5$  
 - $\sigma = 0.75$  
 - $N = 100$
+
 ![alt text](image-6.png)
 Erreur de quantification moyenne = 0.06676759847880981  Temps=0.06s
 
@@ -158,6 +170,7 @@ Si n est trop grand, le temps de calcul peut être excessif et les neurones peuv
 - $\eta = 0.5$  
 - $\sigma = 0.75$  
 - $N = 30\,000$
+
 ![alt text](image-8.png)
 Erreur de quantification moyenne = 0.012295986026089003  Temps=18.58s
 
@@ -167,6 +180,7 @@ Le meilleur résultat est donc obtenu en prenant un N ni trop grand, ni trop pet
 - $\eta = 0.5$  
 - $\sigma = 0.75$  
 - $N = 5\,000$
+
 ![alt text](image-7.png)
 Erreur de quantification moyenne = 0.011297272645850752  Temps=3.13s
 ### Taille et forme de la carte :
@@ -178,6 +192,7 @@ Si la carte est trop petite, alors il peut ne pas y avoir assez de neurones pour
 - $\sigma = 0.75$  
 - $N = 20\,000$  
 - $gridsize = (5,\ 5)$ — *Carré*
+
 ![alt text](image-13.png)
 Erreur de quantification moyenne = 0.04970305593373589
 #### Hypothèse 2
@@ -187,7 +202,10 @@ Si la carte est trop grande, alors le temps de calcul risque d'être trop grand.
 - $\sigma = 0.75$  
 - $N = 20\,000$  
 - $gridsize = (20,\ 20)$ — *Carré*
+
 ![alt text](image-12.png)
+Erreur de quantification moyenne = 0.002809332273398752
+
 #### Hypothèse 3
 
 La taille de la carte doit être optimale pour pouvoir représenter au mieux le jeu d'entrées.
@@ -195,6 +213,7 @@ La taille de la carte doit être optimale pour pouvoir représenter au mieux le 
 - $\sigma = 0.75$  
 - $N = 20\,000$  
 - $gridsize = (10,\ 10) — *Carré*$
+
 ![alt text](image-10.png)
 Erreur de quantification moyenne = 0.010354177742160645
 #### Hypothèse 4
@@ -216,6 +235,7 @@ Si la carte est un carré, cette dernière essayera de recouvrir l'ensemble de l
 - $\sigma = 0.75$  
 - $N = 20\,000$  
 - $gridsize = (10,\ 10) — *Carré*$
+
 ![alt text](image-10.png)
 Erreur de quantification moyenne = 0.010354177742160645
 
@@ -226,19 +246,38 @@ Si la carte est un rectangle, cette dernière essayera de recouvrir l'ensemble d
 - $\sigma = 0.75$  
 - $N = 20\,000$  
 - $gridsize = (15,\ 5)$ — *Rectangle 15×5*
+
 ![alt text](image-11.png)
 Erreur de quantification moyenne = 0.01733269050710892
 
 ### Influence du jeu de données :
-
+![alt text](image-14.png)
 #### Hypothèse 1
 Avec une distribution « Plus sur bords », la SOM placera davantage de neurones en périphérie : on s’attend à une couverture plus dense des zones bordures et une meilleure quantification en bordure, au prix d’une sous-représentation du centre.
+- $\eta = 0.5$  
+- $\sigma = 0.75$  
+- $N = 20\,000$ 
+
+![alt text](image-15.png)
+Erreur de quantification moyenne = 0.008247854922778304
 
 #### Hypothèse 2  
 À l’inverse, une distribution « Plus au centre » concentre la majorité des neurones au centre du plan d’entrée : les bords seront peu ou pas couverts, ce qui génère une erreur locale élevée en périphérie.
+- $\eta = 0.5$  
+- $\sigma = 0.75$  
+- $N = 20\,000$ 
+
+![alt text](image-16.png)
+Erreur de quantification moyenne = 0.00972440891013837
 
 #### Hypothèse 3  
 Pour une distribution en « Colonnes » (trois bandes de densité variable), la SOM alignera les neurones sur les bandes les plus peuplées. Les colonnes peu denses seront alors sous-représentées, entraînant une quantification imprécise et une erreur locale élevée dans ces zones peu alimentées.
+- $\eta = 0.5$  
+- $\sigma = 0.75$  
+- $N = 20\,000$ 
+
+![alt text](image-17.png)
+Erreur de quantification moyenne = 0.010230588340711267
 
 ### Bras robotique
 
