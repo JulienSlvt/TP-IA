@@ -150,7 +150,7 @@ Si la carte est une ligne, alors cette ligne va être courbée pour essayer de r
 
 #### Hypothèse 2
 
-Si la carte est un rectangle ou un carré, cette dernière essayera de recouvrir l'ensemble de la carte, mais la plupart des points seront dans la zone la plus dense.
+Si la carte est un rectangle ou un carré, cette dernière essayera de recouvrir l'ensemble de la carte, mais la plupart des neuronnes seront dans la zone la plus dense.
 
 ### Bras robotique
 
