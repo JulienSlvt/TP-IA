@@ -120,6 +120,9 @@ Une valeur de η intermédiaire (entre 0.2 et 0.8) devrait offrir un bon comprom
 ![alt text](image-1.png)
 Erreur de quantification moyenne = 0.011177136711844912
 
+#### Confrontation des résultats:
+Dans l'ensemble, η = 0.5 est la valeur qui donne le meilleur résultat, car elle permet d'avoir une bonne vitesse de convergence et une bonne précision à la fin de l'apprentissage. Et les hypothèses sont confirmées, car η = 0.005 est trop petit et η = 1 est trop grand.
+
 ### Influence de σ :
 
 #### Hypothèse 1
@@ -152,6 +155,9 @@ Pour obtenir les meilleurs résultats, σ doit avoir une valeur intermédiaire, 
 ![alt text](image-5.png)
 Erreur de quantification moyenne = 0.0105  
 M(σ=0.75) = 0.1828
+
+#### Confrontation des résultats:
+Dans l'ensemble, σ = 0.75 est la valeur qui donne le meilleur résultat, car elle permet d'avoir une bonne vitesse de convergence et une bonne précision à la fin de l'apprentissage. Et les hypothèses sont confirmées, car σ = 0.25 est trop petit et σ = 3 est trop grand.
 ### Influence de N :
 
 #### Hypothèse 1
@@ -183,6 +189,9 @@ Le meilleur résultat est donc obtenu en prenant un N ni trop grand, ni trop pet
 
 ![alt text](image-7.png)
 Erreur de quantification moyenne = 0.011297272645850752  Temps=3.13s
+
+#### Confrontation des résultats:
+Dans l'ensemble, N = 5\,000 est la valeur qui donne le meilleur résultat, car elle permet d'avoir une bonne vitesse de convergence et une bonne précision à la fin de l'apprentissage. Et les hypothèses sont confirmées, car N = 100 est trop petit, la carte n'a pas eu assez d'occasion d'apprendre et N = 30\,000 est trop grand avec un moins bon résultat et un grand temps de calcul.
 ### Taille et forme de la carte :
 
 #### Hypothèse 1
@@ -212,7 +221,7 @@ La taille de la carte doit être optimale pour pouvoir représenter au mieux le 
 - $\eta = 0.5$  
 - $\sigma = 0.75$  
 - $N = 20\,000$  
-- $gridsize = (10,\ 10) — *Carré*$
+- $gridsize = (10,\ 10)$ — *Carré*
 
 ![alt text](image-10.png)
 Erreur de quantification moyenne = 0.010354177742160645
@@ -234,7 +243,7 @@ Si la carte est un carré, cette dernière essayera de recouvrir l'ensemble de l
 - $\eta = 0.5$  
 - $\sigma = 0.75$  
 - $N = 20\,000$  
-- $gridsize = (10,\ 10) — *Carré*$
+- $gridsize = (10,\ 10)$ — *Carré*
 
 ![alt text](image-10.png)
 Erreur de quantification moyenne = 0.010354177742160645
@@ -249,6 +258,9 @@ Si la carte est un rectangle, cette dernière essayera de recouvrir l'ensemble d
 
 ![alt text](image-11.png)
 Erreur de quantification moyenne = 0.01733269050710892
+
+#### Confrontation des résultats:
+Dans l'ensemble, la carte de taille 10x10 est la meilleure, car elle permet d'avoir une bonne vitesse de convergence et une bonne précision à la fin de l'apprentissage. Et les hypothèses sont confirmées, car la carte 5x5 est trop petite et la carte 20x20 est trop grande. La carte en ligne est trop étroite et ne couvre pas assez d'espace. La carte carrée est la plus efficace pour couvrir l'espace d'entrée, tandis que la carte rectangulaire est moins efficace pour un tel jeu de données.
 
 ### Influence du jeu de données :
 ![alt text](image-14.png)
@@ -278,6 +290,9 @@ Pour une distribution en « Colonnes » (trois bandes de densité variable), la 
 
 ![alt text](image-17.png)
 Erreur de quantification moyenne = 0.010230588340711267
+
+#### Confrontation des résultats:
+Dans l'ensemble, les hypothèses sont confirmées, car pour la carte de distribution « Plus sur bords », la carte est étirée sur les bords, ce qui donne une erreur de quantification plus faible. Pour la carte de distribution « Plus au centre », la carte est regroupée au centre, donnant un meilleur résultat. Finalement, pour la carte de distribution « Colonnes », la carte est plus resserrée sur la droite, plus dense, et étirée sur la gauche, ce qui correspond au résultat attendu.
 
 ### Bras robotique
 
