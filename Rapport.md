@@ -174,7 +174,12 @@ Erreur de quantification moyenne = 0.011297272645850752  Temps=3.13s
 #### Hypothèse 1
 
 Si la carte est trop petite, alors il peut ne pas y avoir assez de neurones pour couvrir l'entrée, ce qui donnerait une grande perte d'information.
-
+- $\eta = 0.5$  
+- $\sigma = 0.75$  
+- $N = 20\,000$  
+- $gridsize = (5,\ 5)$ — *Carré*
+![alt text](image-13.png)
+Erreur de quantification moyenne = 0.04970305593373589
 #### Hypothèse 2
 
 Si la carte est trop grande, alors le temps de calcul risque d'être trop grand. Et les points de la carte seront trop rapprochés les uns des autres, ce qui peut entraîner une perte d'information. De plus, si la carte est trop grande, les neurones peuvent se spécialiser trop rapidement et ne pas explorer l'entièreté de l'espace.
