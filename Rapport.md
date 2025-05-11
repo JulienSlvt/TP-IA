@@ -153,3 +153,18 @@ Si la carte est une ligne, alors cette ligne va être courbée pour essayer de r
 Si la carte est un rectangle ou un carré, cette dernière essayera de recouvrir l'ensemble de la carte, mais la plupart des points seront dans la zone la plus dense.
 
 ### Bras robotique
+
+Une fois que la carte de Kohonen a fini son apprentissage, chaque neurone a en mémoire un vecteur de poids qui résume la configuration du bras, avec les angles des moteurs (θ) et la position de la main dans l'espace (x et y).
+
+Si on veut prédire la position de la main du robot grâce aux angles moteurs spécifiques, il suffit de : 
+- Trouver dans toute notre carte le neurone dont les angles mémorisés ressemblent le plus à ceux qu'on a donnés. 
+- Une fois trouvé, on regarde simplement la position spatiale (x, y) qu'il a apprise
+
+Cela est possible car pendant l'apprentissage, la carte a vu de nombreux exemples et ce neurone a appris l'association la plus fréquente entre ces angles et cette position.
+
+Pour prédire l'inverse, on utilise le même principe. On prend notre position (x, y) cible, et on cherche dans la carte le neurone dont la position spatiale mémorisée est la plus proche de notre cible. Une fois qu'on a ce neurone, on regarde les angles moteurs qu'il a associés à cette position. Ce sont ces angles qu'on va utiliser comme commande. 
+
+Cette méthode permet d'approximer la solution, sans avoir à résoudre des équations compliquées.
+
+### Conclusion
+La carte de Kohonen associe des entrées et des sorties en se basant sur les exemples qu'elle a vus. Quand on lui donne une nouvelle entrée, elle cherche dans sa mémoire la sortie qui lui correspond le mieux. 
