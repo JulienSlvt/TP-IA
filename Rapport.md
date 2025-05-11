@@ -224,6 +224,17 @@ Si la carte est un rectangle, cette dernière essayera de recouvrir l'ensemble d
 ![alt text](image-11.png)
 Erreur de quantification moyenne = 0.01733269050710892
 
+### Influence du jeu de données :
+
+#### Hypothèse 1
+Avec une distribution « Plus sur bords », la SOM placera davantage de neurones en périphérie : on s’attend à une couverture plus dense des zones bordures et une meilleure quantification en bordure, au prix d’une sous-représentation du centre.
+
+#### Hypothèse 2  
+À l’inverse, une distribution « Plus au centre » concentre la majorité des neurones au centre du plan d’entrée : les bords seront peu ou pas couverts, ce qui génère une erreur locale élevée en périphérie.
+
+#### Hypothèse 3  
+Pour une distribution en « Colonnes » (trois bandes de densité variable), la SOM alignera les neurones sur les bandes les plus peuplées. Les colonnes peu denses seront alors sous-représentées, entraînant une quantification imprécise et une erreur locale élevée dans ces zones peu alimentées.
+
 ### Bras robotique
 
 #### Question 1
