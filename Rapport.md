@@ -154,6 +154,7 @@ Si la carte est un rectangle ou un carré, cette dernière essayera de recouvrir
 
 ### Bras robotique
 
+#### Question 1
 Une fois que la carte de Kohonen a fini son apprentissage, chaque neurone a en mémoire un vecteur de poids qui résume la configuration du bras, avec les angles des moteurs (θ) et la position de la main dans l'espace (x et y).
 
 Si on veut prédire la position de la main du robot grâce aux angles moteurs spécifiques, il suffit de : 
@@ -166,5 +167,16 @@ Pour prédire l'inverse, on utilise le même principe. On prend notre position (
 
 Cette méthode permet d'approximer la solution, sans avoir à résoudre des équations compliquées.
 
-### Conclusion
+#### Conclusion
 La carte de Kohonen associe des entrées et des sorties en se basant sur les exemples qu'elle a vus. Quand on lui donne une nouvelle entrée, elle cherche dans sa mémoire la sortie qui lui correspond le mieux. 
+
+#### Question 2
+Pour prédire la suite des positions spatiales prises par la main lors d'un déplacement d'une configuration motrice (θ₁, θ₂) à une nouvelle (θ'₁, θ'₂), nous pouvons exploiter la carte de Kohonen apprise.  
+
+Nous devons d'abord identifier sur la carte les neurones qui représentent le mieux nos configurations motrices de départ et d'arrivée. Pour la position initiale (θ₁, θ₂), on trouve le neurone "gagnant" (BMU_initial) dont les composantes de son vecteur de poids sont les plus proches, de même pour la position finale (θ'₁, θ'₂), identifiant ainsi un BMU_final.   
+
+Une fois que nous avons identifié sur la carte les neurones correspondant à nos positions de départ et d'arrivée, on imagine un chemin sur la grille de la carte qui relie ces deux neurones. Ce chemin va passer par une série d'autres neurones intermédiaires sur la carte.   
+
+Pour chaque neurone que l'on croise sur ce chemin, on récupère la position spatiale ( x₁ et x₂) que ce neurone a apprise et mémorisée dans ses poids. A la fin de ce proccessus, on obtient une séquence de points. Cette séquence est notre prédiction de la trajectoire de la main.   
+
+L'idée ici, c'est que la carte de Kohonen s'organise de telle manière que des neurones voisins sur la grille représentent des configurations du bras qui sont elles-mêmes similaires. Donc, se déplacer le long d'un chemin sur la grille de la carte équivaut à une transition progressive et logique entre les configurations du bras. Chaque neurone sur ce chemin nous donne un point de passage spatial appris. Ce n'est pas la trajectoire exacte au millimètre près, car la carte est une approximation, mais cela donne une bonne idée du parcours global et une suite plausible de positions.
